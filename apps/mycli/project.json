@@ -1,0 +1,50 @@
+{
+  "name": "postmodern-mycli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mycli/postmodern/mycli",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe test",
+        "cwd": "apps/mycli"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe check",
+        "cwd": "apps/mycli"
+      }
+    },
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe fmt",
+        "cwd": "apps/mycli"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe lint",
+        "cwd": "apps/mycli"
+      }
+    },
+    "ci:fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe ci:fmt",
+        "cwd": "apps/mycli"
+      }
+    },
+    "ci:lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe ci:lint",
+        "cwd": "apps/mycli"
+      }
+    }
+  }
+}

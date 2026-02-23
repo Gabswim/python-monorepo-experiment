@@ -4,6 +4,8 @@ fmt = "ruff format ${PWD}"
 lint = "ruff check --fix ${PWD}"
 check = "basedpyright ${PWD}"
 test = "pytest ${PWD}"
+ci-affected = "npx nx affected -t ci:fmt ci:lint check test"
+ci = "npx nx run-many -t ci:fmt ci:lint check test"
 # run all the above
 all = [ {ref="fmt"}, {ref="lint"}, {ref="check"}, {ref="test"} ]
 

@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "defaultBase": "main",
+  "tui": {
+    "enabled": true
+  },
+  "plugins": [
+    {
+      "plugin": "@nxlv/python"
+    }
+  ],
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "python": [
+      "{projectRoot}/**/*.py",
+      "{projectRoot}/pyproject.toml",
+      "{workspaceRoot}/uv.lock",
+      "{workspaceRoot}/pyproject.toml"
+    ]
+  },
+  "targetDefaults": {
+    "test": {
+      "cache": true,
+      "inputs": ["python", "^python"],
+      "dependsOn": ["^test"]
+    },
+    "check": {
+      "cache": true,
+      "inputs": ["python", "^python"]
+    },
+    "ci:fmt": {
+      "cache": true,
+      "inputs": ["python"]
+    },
+    "ci:lint": {
+      "cache": true,
+      "inputs": ["python"]
+    },
+    "fmt": {
+      "cache": false
+    },
+    "lint": {
+      "cache": false
+    }
+  }
+}

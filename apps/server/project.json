@@ -1,0 +1,50 @@
+{
+  "name": "postmodern-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/server/postmodern/server",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe test",
+        "cwd": "apps/server"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe check",
+        "cwd": "apps/server"
+      }
+    },
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe fmt",
+        "cwd": "apps/server"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe lint",
+        "cwd": "apps/server"
+      }
+    },
+    "ci:fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe ci:fmt",
+        "cwd": "apps/server"
+      }
+    },
+    "ci:lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run poe ci:lint",
+        "cwd": "apps/server"
+      }
+    }
+  }
+}
