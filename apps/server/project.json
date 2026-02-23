@@ -7,42 +7,42 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe test",
+        "command": "uv run pytest .",
         "cwd": "apps/server"
       }
     },
     "check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe check",
+        "command": "uv run basedpyright .",
         "cwd": "apps/server"
       }
     },
     "fmt": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe fmt",
+        "command": "uv run ruff format .",
         "cwd": "apps/server"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe lint",
+        "command": "uv run ruff check --fix .",
         "cwd": "apps/server"
       }
     },
     "ci:fmt": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe ci:fmt",
+        "command": "uv run ruff format --check .",
         "cwd": "apps/server"
       }
     },
     "ci:lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe ci:lint",
+        "command": "uv run ruff check .",
         "cwd": "apps/server"
       }
     }

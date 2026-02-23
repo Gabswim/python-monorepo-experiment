@@ -7,42 +7,42 @@
     "test": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe test",
+        "command": "uv run pytest .",
         "cwd": "libs/greeter"
       }
     },
     "check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe check",
+        "command": "uv run basedpyright .",
         "cwd": "libs/greeter"
       }
     },
     "fmt": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe fmt",
+        "command": "uv run ruff format .",
         "cwd": "libs/greeter"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe lint",
+        "command": "uv run ruff check --fix .",
         "cwd": "libs/greeter"
       }
     },
     "ci:fmt": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe ci:fmt",
+        "command": "uv run ruff format --check .",
         "cwd": "libs/greeter"
       }
     },
     "ci:lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run poe ci:lint",
+        "command": "uv run ruff check .",
         "cwd": "libs/greeter"
       }
     }
