@@ -26,8 +26,7 @@
     },
     "test": {
       "cache": true,
-      "inputs": ["python", "^python"],
-      "dependsOn": ["^test"]
+      "inputs": ["python", "^python"]
     },
     "check": {
       "cache": true,

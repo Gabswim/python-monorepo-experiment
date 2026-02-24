@@ -21,7 +21,7 @@ dev = [
 postmodern-server2 = { workspace = true }
 
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.14"
 python = "../../.venv"
 
 [tool.uv]
