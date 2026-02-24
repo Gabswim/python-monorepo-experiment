@@ -8,6 +8,7 @@ members = [
     "postmodern-greeter",
     "postmodern-mycli",
     "postmodern-server",
+    "postmodern-server2",
 ]
 
 [[package]]
@@ -114,6 +115,31 @@ dev = [
 name = "postmodern-server"
 version = "0.1.0"
 source = { editable = "apps/server" }
+dependencies = [
+    { name = "postmodern-greeter" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pytest" },
+    { name = "ruff" },
+    { name = "ty" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "postmodern-greeter", editable = "libs/greeter" }]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pytest", specifier = "==8.3.4" },
+    { name = "ruff", specifier = "==0.8.5" },
+    { name = "ty", specifier = "==0.0.18" },
+]
+
+[[package]]
+name = "postmodern-server2"
+version = "0.1.0"
+source = { editable = "apps/server2" }
 dependencies = [
     { name = "postmodern-greeter" },
 ]

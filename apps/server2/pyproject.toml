@@ -1,0 +1,31 @@
+[project]
+name = "postmodern-server2"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = "== 3.14.*"
+dependencies = [
+    "postmodern-greeter",
+]
+
+[dependency-groups]
+dev = [
+    "pytest == 8.3.4",
+    "ruff == 0.8.5",
+    "ty == 0.0.18",
+]
+
+[tool.uv.sources]
+postmodern-greeter = { workspace = true }
+
+[tool.ty.environment]
+python-version = "3.13"
+python = "../../.venv"
+
+[build-system]
+requires = ["uv_build == 0.10.4"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "postmodern.server2"
+module-root = ""

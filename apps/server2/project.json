@@ -1,56 +1,56 @@
 {
-  "name": "postmodern-server",
+  "name": "postmodern-server2",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/server/postmodern/server",
+  "sourceRoot": "apps/server2/postmodern/server2",
   "targets": {
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run python -m postmodern.server.run",
-        "cwd": "apps/server"
+        "command": "uv run python -m postmodern.server2.run",
+        "cwd": "apps/server2"
       }
     },
     "test": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run pytest .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     },
     "check": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run ty check .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     },
     "fmt": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run ruff format .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run ruff check --fix .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     },
     "ci:fmt": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run ruff format --check .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     },
     "ci:lint": {
       "executor": "nx:run-commands",
       "options": {
         "command": "uv run ruff check .",
-        "cwd": "apps/server"
+        "cwd": "apps/server2"
       }
     }
   }
