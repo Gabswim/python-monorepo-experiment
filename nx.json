@@ -21,7 +21,8 @@
   },
   "targetDefaults": {
     "dev": {
-      "cache": false
+      "cache": false,
+      "continuous": true
     },
     "test": {
       "cache": true,

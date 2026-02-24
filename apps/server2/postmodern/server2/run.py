@@ -1,13 +1,11 @@
-from postmodern.greeter import greet, greet_with_name
+from fastapi import FastAPI
+from postmodern.greeter import greet_with_name
+
+app = FastAPI()
 
 
-def main():
-    msg = greet()
-    print("[server2]", msg)
-    name = "Bob"
-    msg_with_name = greet_with_name(name)
-    print("[server2]", msg_with_name)
-
-
-if __name__ == "__main__":
-    main()
+@app.get("/greet")
+def greet(name: str):
+    return {
+        "message": greet_with_name(name),
+    }

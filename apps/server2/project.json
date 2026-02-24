@@ -7,7 +7,7 @@
     "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run python -m postmodern.server2.run",
+        "command": "uv run uvicorn postmodern.server2.run:app --reload --port 8001",
         "cwd": "apps/server2"
       }
     },
