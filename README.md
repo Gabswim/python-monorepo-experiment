@@ -2,6 +2,8 @@
 
 A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Nx](https://nx.dev/) for task orchestration.
 
+> **Credit:** This project was bootstrapped from [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
+
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) — Python package manager
@@ -55,34 +57,27 @@ npm install
 
 All tasks are managed through Nx. Run them across all projects or target a specific one.
 
-### Run across all projects
+| Command | Description |
+| --- | --- |
+| `npx nx run postmodern-server:dev` | Start the server in dev mode with hot-reload |
+| `npx nx run-many -t fmt` | Format code (ruff format) |
+| `npx nx run-many -t lint` | Lint & auto-fix (ruff check --fix) |
+| `npx nx run-many -t check` | Type-check (ty check) |
+| `npx nx run-many -t test` | Run tests (pytest) |
+| `npx nx run <project>:<target>` | Run a specific target for a single project |
+| `npx nx run postmodern-server:test` | Example: run tests for the server |
+| `npx nx run postmodern-mycli:lint` | Example: lint the CLI app |
+| `npx nx run postmodern-greeter:check` | Example: type-check the greeter library |
+| `NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e` | CI: run all checks (push/main) |
+| `NX_TUI=false npx nx affected -t ci:fmt ci:lint check test e2e` | CI: run checks only for affected projects (PRs) |
 
-```bash
-npx nx run-many -t fmt        # format code (ruff format)
-npx nx run-many -t lint       # lint & fix (ruff check --fix)
-npx nx run-many -t check      # type-check (ty check)
-npx nx run-many -t test       # run tests (pytest)
-```
+## Useful Nx Commands
 
-### Run for a single project
-
-```bash
-npx nx run postmodern-server:test
-npx nx run postmodern-mycli:lint
-npx nx run postmodern-greeter:check
-```
-
-### CI targets (no auto-fix)
-
-```bash
-NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e
-```
-
-### Docker
-
-Build and run the server from the workspace root:
-
-```bash
-docker build --tag=postmodern-server -f apps/server/Dockerfile .
-docker run --rm -it postmodern-server
-```
+| Command | Description |
+| --- | --- |
+| `npx nx graph` | Visualize the project dependency graph in your browser |
+| `npx nx show projects` | List all projects in the workspace |
+| `npx nx show project <name>` | Show details and available targets for a project |
+| `npx nx affected -t test` | Run tests only for projects affected by current changes |
+| `npx nx reset` | Clear the Nx cache |
+| `npx nx report` | Display installed Nx plugin versions and workspace info |
