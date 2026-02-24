@@ -96,22 +96,6 @@ name = "postmodern"
 version = "0.1.0"
 source = { virtual = "." }
 
-[package.dev-dependencies]
-dev = [
-    { name = "basedpyright" },
-    { name = "pytest" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "basedpyright", specifier = ">=1.23.1" },
-    { name = "pytest", specifier = ">=8.3.4" },
-    { name = "ruff", specifier = ">=0.8.5" },
-]
-
 [[package]]
 name = "postmodern-greeter"
 version = "0.1.0"
@@ -128,13 +112,13 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "cowsay-python", specifier = "~=1.0.2" }]
+requires-dist = [{ name = "cowsay-python", specifier = "==1.0.2" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "basedpyright", specifier = ">0" },
-    { name = "pytest", specifier = ">0" },
-    { name = "ruff", specifier = ">0" },
+    { name = "basedpyright", specifier = "==1.23.1" },
+    { name = "pytest", specifier = "==8.3.4" },
+    { name = "ruff", specifier = "==0.8.5" },
 ]
 
 [[package]]
@@ -153,13 +137,13 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "urllib3", specifier = "~=2.3.0" }]
+requires-dist = [{ name = "urllib3", specifier = "==2.3.0" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "basedpyright", specifier = ">0" },
-    { name = "pytest", specifier = ">0" },
-    { name = "ruff", specifier = ">0" },
+    { name = "basedpyright", specifier = "==1.23.1" },
+    { name = "pytest", specifier = "==8.3.4" },
+    { name = "ruff", specifier = "==0.8.5" },
 ]
 
 [[package]]
@@ -182,9 +166,9 @@ requires-dist = [{ name = "postmodern-greeter", editable = "libs/greeter" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "basedpyright", specifier = ">0" },
-    { name = "pytest", specifier = ">0" },
-    { name = "ruff", specifier = ">0" },
+    { name = "basedpyright", specifier = "==1.23.1" },
+    { name = "pytest", specifier = "==8.3.4" },
+    { name = "ruff", specifier = "==0.8.5" },
 ]
 
 [[package]]

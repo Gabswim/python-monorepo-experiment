@@ -5,14 +5,14 @@ description = ""
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "cowsay-python ~= 1.0.2",
+    "cowsay-python == 1.0.2",
 ]
 
 [dependency-groups]
 dev = [
-    "basedpyright>0",
-    "pytest>0",
-    "ruff>0",
+    "basedpyright == 1.23.1",
+    "pytest == 8.3.4",
+    "ruff == 0.8.5",
 ]
 
 [tool.uv]
