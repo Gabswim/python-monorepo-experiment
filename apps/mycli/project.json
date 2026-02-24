@@ -14,7 +14,7 @@
     "check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "uv run basedpyright .",
+        "command": "uv run ty check .",
         "cwd": "apps/mycli"
       }
     },
