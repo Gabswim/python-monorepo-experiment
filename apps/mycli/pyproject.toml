@@ -21,7 +21,7 @@ dev = [
 postmodernfoo = "postmodern.mycli.cli:main"
 
 [tool.ty.environment]
-python-version = "3.13"
+python-version = "3.14"
 python = "../../.venv"
 
 [build-system]

@@ -37,10 +37,10 @@ jobs:
             nx-${{ runner.os }}-
 
       - run: npm ci
-      - run: uv sync --all-extras --locked
+      - run: uv sync --all-packages --locked
 
       # Determine affected projects based on git diff
       - uses: nrwl/nx-set-shas@v4
 
       # Run tasks only on affected projects
-      - run: npx nx affected -t ci:fmt ci:lint check test e2e
+      - run: NX_TUI=false npx nx affected -t ci:fmt ci:lint check test e2e

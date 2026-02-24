@@ -1,8 +1,11 @@
+import pathlib
 import subprocess
 import time
 
 import httpx
 import pytest
+
+REPO_ROOT = pathlib.Path(__file__).resolve().parents[3]
 
 
 @pytest.fixture(scope="module")
@@ -10,7 +13,7 @@ def server():
     """Start the server2 application on a test port and tear it down after tests."""
     proc = subprocess.Popen(
         ["uv", "run", "uvicorn", "postmodern.server2.run:app", "--port", "8765"],
-        cwd="../../apps/server2",
+        cwd=str(REPO_ROOT / "apps" / "server2"),
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
