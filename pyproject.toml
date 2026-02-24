@@ -10,4 +10,4 @@ dependencies = []
 required-version = "==0.9.18"
 
 [tool.uv.workspace]
-members = ["libs/*", "apps/*"]
+members = ["libs/*", "apps/*", "e2e/*"]
