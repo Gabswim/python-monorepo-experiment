@@ -20,6 +20,9 @@
     ]
   },
   "targetDefaults": {
+    "dev": {
+      "cache": false
+    },
     "test": {
       "cache": true,
       "inputs": ["python", "^python"],
