@@ -1,4 +1,4 @@
-# postmodern-mono
+# python-monorepo-experiment
 
 A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Nx](https://nx.dev/) for task orchestration.
 
@@ -43,8 +43,8 @@ A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/proje
 
 ```bash
 # Clone the repo
-git clone git@github.com:carderne/postmodern-mono.git
-cd postmodern-mono
+git clone https://github.com/Gabswim/python-monorepo-experiment.git
+cd python-monorepo-experiment
 
 # Install Python dependencies
 uv sync --all-packages
