@@ -75,7 +75,6 @@ All tasks are managed through Nx. Run them across all projects or target a speci
 | `npx nx run postmodern-greeter:check` | Example: type-check the greeter library |
 | `NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e` | CI: run all checks (push/main) |
 | `NX_TUI=false npx nx affected -t ci:fmt ci:lint check test e2e` | CI: run checks only for affected projects (PRs) |
-| `npx nx graph` | Visualize the project dependency graph in your browser |
 
 ## Useful Nx Commands
 
