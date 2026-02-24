@@ -1,9 +1,6 @@
 {
   "name": "postmodern-mono",
   "private": true,
-  "scripts": {
-    "dev": "nx run-many -t dev"
-  },
   "devDependencies": {
     "@nxlv/python": "^22.1.1",
     "nx": "^22.5.2"

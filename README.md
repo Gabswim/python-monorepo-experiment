@@ -59,6 +59,7 @@ All tasks are managed through Nx. Run them across all projects or target a speci
 
 | Command | Description |
 | --- | --- |
+| `npx nx run-many -t dev` | Start all apps in dev mode with hot-reload |
 | `npx nx run postmodern-server:dev` | Start the server in dev mode with hot-reload |
 | `npx nx run-many -t fmt` | Format code (ruff format) |
 | `npx nx run-many -t lint` | Lint & auto-fix (ruff check --fix) |
