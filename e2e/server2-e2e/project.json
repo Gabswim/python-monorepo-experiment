@@ -1,0 +1,52 @@
+{
+  "name": "postmodern-server2-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run pytest .",
+        "cwd": "e2e/server2-e2e"
+      },
+      "cache": true,
+      "inputs": ["python", "^python"],
+      "dependsOn": ["^test"]
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ty check .",
+        "cwd": "e2e/server2-e2e"
+      }
+    },
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format .",
+        "cwd": "e2e/server2-e2e"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check --fix .",
+        "cwd": "e2e/server2-e2e"
+      }
+    },
+    "ci:fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format --check .",
+        "cwd": "e2e/server2-e2e"
+      }
+    },
+    "ci:lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check .",
+        "cwd": "e2e/server2-e2e"
+      }
+    }
+  }
+}

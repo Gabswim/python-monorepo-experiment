@@ -1,0 +1,50 @@
+{
+  "name": "postmodern-mycli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mycli/postmodern/mycli",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run pytest .",
+        "cwd": "apps/mycli"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ty check .",
+        "cwd": "apps/mycli"
+      }
+    },
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format .",
+        "cwd": "apps/mycli"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check --fix .",
+        "cwd": "apps/mycli"
+      }
+    },
+    "ci:fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format --check .",
+        "cwd": "apps/mycli"
+      }
+    },
+    "ci:lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check .",
+        "cwd": "apps/mycli"
+      }
+    }
+  }
+}

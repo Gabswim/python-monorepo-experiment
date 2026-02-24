@@ -1,6 +1,6 @@
-name: pr
+name: ci
 on:
-  pull_request:
+  push:
     branches:
       - main
 jobs:
@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -39,8 +37,4 @@ jobs:
       - run: npm ci
       - run: uv sync --all-extras --locked
 
-      # Determine affected projects based on git diff
-      - uses: nrwl/nx-set-shas@v4
-
-      # Run tasks only on affected projects
-      - run: npx nx affected -t ci:fmt ci:lint check test e2e
+      - run: npx nx run-many -t ci:fmt ci:lint check test e2e

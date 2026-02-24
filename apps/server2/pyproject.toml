@@ -1,24 +1,25 @@
 [project]
-name = "postmodern-mycli"
+name = "postmodern-server2"
 version = "0.1.0"
 description = ""
 readme = "README.md"
 requires-python = "== 3.14.*"
 dependencies = [
-    "urllib3 == 2.3.0",
+    "fastapi == 0.133.0",
+    "postmodern-greeter",
+    "uvicorn == 0.41.0",
 ]
 
 [dependency-groups]
 dev = [
+    "httpx == 0.28.1",
     "pytest == 8.3.4",
     "ruff == 0.8.5",
     "ty == 0.0.18",
 ]
 
 [tool.uv.sources]
-
-[project.scripts]
-postmodernfoo = "postmodern.mycli.cli:main"
+postmodern-greeter = { workspace = true }
 
 [tool.ty.environment]
 python-version = "3.13"
@@ -29,5 +30,5 @@ requires = ["uv_build == 0.10.4"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
-module-name = "postmodern.mycli"
+module-name = "postmodern.server2"
 module-root = ""

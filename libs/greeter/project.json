@@ -1,0 +1,50 @@
+{
+  "name": "postmodern-greeter",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/greeter/postmodern/greeter",
+  "targets": {
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run pytest .",
+        "cwd": "libs/greeter"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ty check .",
+        "cwd": "libs/greeter"
+      }
+    },
+    "fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format .",
+        "cwd": "libs/greeter"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check --fix .",
+        "cwd": "libs/greeter"
+      }
+    },
+    "ci:fmt": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff format --check .",
+        "cwd": "libs/greeter"
+      }
+    },
+    "ci:lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "uv run ruff check .",
+        "cwd": "libs/greeter"
+      }
+    }
+  }
+}
