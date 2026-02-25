@@ -26,6 +26,10 @@ A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/proje
 │   │   ├── project.json
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
+│   ├── server2/                # web server app (postmodern.server2)
+│   │   ├── project.json
+│   │   ├── pyproject.toml
+│   │   └── Dockerfile
 │   └── mycli/                  # CLI app (postmodern.mycli)
 │       ├── project.json
 │       └── pyproject.toml
