@@ -1,41 +1,40 @@
 # python-monorepo-experiment
 
-A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Nx](https://nx.dev/) for task orchestration.
+A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Make](https://www.gnu.org/software/make/) for task orchestration.
 
 > **Credit:** This project was bootstrapped from [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
 
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) — Python package manager
-- [Node.js](https://nodejs.org/) — required for Nx
+- `make` — pre-installed on macOS and Linux
 
 ## Structure
 
 ```
 .
 ├── pyproject.toml              # root pyproject (workspace config)
-├── nx.json                     # Nx task runner config
-├── package.json                # Nx dependencies
+├── Makefile                    # root task runner (delegates to sub-Makefiles)
 ├── uv.lock
 ├── libs/
 │   └── greeter/                # shared library (postmodern.greeter)
-│       ├── project.json
+│       ├── Makefile
 │       └── pyproject.toml
 ├── apps/
 │   ├── server/                 # web server app (postmodern.server)
-│   │   ├── project.json
+│   │   ├── Makefile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   ├── server2/                # web server app (postmodern.server2)
-│   │   ├── project.json
+│   │   ├── Makefile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   └── mycli/                  # CLI app (postmodern.mycli)
-│       ├── project.json
+│       ├── Makefile
 │       └── pyproject.toml
 └── e2e/
     └── server2-e2e/            # end-to-end tests for server2
-        ├── project.json
+        ├── Makefile
         └── pyproject.toml
 ```
 
@@ -52,37 +51,32 @@ cd python-monorepo-experiment
 
 # Install Python dependencies
 uv sync --all-packages
-
-# Install Nx
-npm install
 ```
 
 ## Commands
 
-All tasks are managed through Nx. Run them across all projects or target a specific one.
+All tasks are managed through Make. Run them across all projects or target a specific one.
+Add `-j` for parallel execution (e.g. `make -j test`).
 
 | Command | Description |
 | --- | --- |
-| `npx nx run-many -t dev` | Start all apps in dev mode with hot-reload |
-| `npx nx run postmodern-server:dev` | Start the server in dev mode with hot-reload |
-| `npx nx run-many -t fmt` | Format code (ruff format) |
-| `npx nx run-many -t lint` | Lint & auto-fix (ruff check --fix) |
-| `npx nx run-many -t check` | Type-check (ty check) |
-| `npx nx run-many -t test` | Run tests (pytest) |
-| `npx nx run <project>:<target>` | Run a specific target for a single project |
-| `npx nx run postmodern-server:test` | Example: run tests for the server |
-| `npx nx run postmodern-mycli:lint` | Example: lint the CLI app |
-| `npx nx run postmodern-greeter:check` | Example: type-check the greeter library |
-| `NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e` | CI: run all checks (push/main) |
-| `NX_TUI=false npx nx affected -t ci:fmt ci:lint check test e2e` | CI: run checks only for affected projects (PRs) |
+| `make dev` | Start all apps in dev mode with hot-reload |
+| `make server-dev` | Start the server in dev mode with hot-reload |
+| `make fmt` | Format code (ruff format) |
+| `make lint` | Lint & auto-fix (ruff check --fix) |
+| `make check` | Type-check (ty check) |
+| `make test` | Run tests (pytest) |
+| `make <project>-<target>` | Run a specific target for a single project |
+| `make server-test` | Example: run tests for the server |
+| `make mycli-lint` | Example: lint the CLI app |
+| `make greeter-check` | Example: type-check the greeter library |
+| `make ci` | CI: run all checks (format, lint, type-check, test, e2e) |
+| `make run-e2e` | Run unit tests then e2e tests |
+| `make -C apps/server test` | Alternative: run a target directly in a project directory |
 
-## Useful Nx Commands
+## Useful Commands
 
 | Command | Description |
 | --- | --- |
-| `npx nx graph` | Visualize the project dependency graph in your browser |
-| `npx nx show projects` | List all projects in the workspace |
-| `npx nx show project <name>` | Show details and available targets for a project |
-| `npx nx affected -t test` | Run tests only for projects affected by current changes |
-| `npx nx reset` | Clear the Nx cache |
-| `npx nx report` | Display installed Nx plugin versions and workspace info |
+| `make help` | List all available targets with descriptions |
+| `make setup` | Install all Python dependencies (`uv sync --all-packages`) |
