@@ -9,10 +9,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
+      - uses: extractions/setup-just@v2
 
       - uses: astral-sh/setup-uv@v5
         with:
@@ -25,16 +22,6 @@ jobs:
           key: uv-${{ runner.os }}-${{ hashFiles('uv.lock') }}
           restore-keys: uv-${{ runner.os }}-
 
-      # Cache Nx task outputs
-      - uses: actions/cache@v4
-        with:
-          path: .nx/cache
-          key: nx-${{ runner.os }}-${{ hashFiles('nx.json', '**/project.json') }}-${{ github.sha }}
-          restore-keys: |
-            nx-${{ runner.os }}-${{ hashFiles('nx.json', '**/project.json') }}-
-            nx-${{ runner.os }}-
-
-      - run: npm ci
       - run: uv sync --all-packages --locked
 
-      - run: NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e
+      - run: just ci

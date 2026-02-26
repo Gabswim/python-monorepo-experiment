@@ -1,41 +1,40 @@
 # python-monorepo-experiment
 
-A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Nx](https://nx.dev/) for task orchestration.
+A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Just](https://just.systems/) for task orchestration.
 
 > **Credit:** This project was bootstrapped from [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
 
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) — Python package manager
-- [Node.js](https://nodejs.org/) — required for Nx
+- [just](https://just.systems/) — command runner
 
 ## Structure
 
 ```
 .
 ├── pyproject.toml              # root pyproject (workspace config)
-├── nx.json                     # Nx task runner config
-├── package.json                # Nx dependencies
+├── justfile                    # root task runner (aggregates modules)
 ├── uv.lock
 ├── libs/
 │   └── greeter/                # shared library (postmodern.greeter)
-│       ├── project.json
+│       ├── justfile
 │       └── pyproject.toml
 ├── apps/
 │   ├── server/                 # web server app (postmodern.server)
-│   │   ├── project.json
+│   │   ├── justfile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   ├── server2/                # web server app (postmodern.server2)
-│   │   ├── project.json
+│   │   ├── justfile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   └── mycli/                  # CLI app (postmodern.mycli)
-│       ├── project.json
+│       ├── justfile
 │       └── pyproject.toml
 └── e2e/
     └── server2-e2e/            # end-to-end tests for server2
-        ├── project.json
+        ├── justfile
         └── pyproject.toml
 ```
 
@@ -52,37 +51,31 @@ cd python-monorepo-experiment
 
 # Install Python dependencies
 uv sync --all-packages
-
-# Install Nx
-npm install
 ```
 
 ## Commands
 
-All tasks are managed through Nx. Run them across all projects or target a specific one.
+All tasks are managed through Just. Run them across all projects or target a specific one.
 
 | Command | Description |
 | --- | --- |
-| `npx nx run-many -t dev` | Start all apps in dev mode with hot-reload |
-| `npx nx run postmodern-server:dev` | Start the server in dev mode with hot-reload |
-| `npx nx run-many -t fmt` | Format code (ruff format) |
-| `npx nx run-many -t lint` | Lint & auto-fix (ruff check --fix) |
-| `npx nx run-many -t check` | Type-check (ty check) |
-| `npx nx run-many -t test` | Run tests (pytest) |
-| `npx nx run <project>:<target>` | Run a specific target for a single project |
-| `npx nx run postmodern-server:test` | Example: run tests for the server |
-| `npx nx run postmodern-mycli:lint` | Example: lint the CLI app |
-| `npx nx run postmodern-greeter:check` | Example: type-check the greeter library |
-| `NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e` | CI: run all checks (push/main) |
-| `NX_TUI=false npx nx affected -t ci:fmt ci:lint check test e2e` | CI: run checks only for affected projects (PRs) |
+| `just dev` | Start all apps in dev mode with hot-reload |
+| `just server::dev` | Start the server in dev mode with hot-reload |
+| `just fmt` | Format code (ruff format) |
+| `just lint` | Lint & auto-fix (ruff check --fix) |
+| `just check` | Type-check (ty check) |
+| `just test` | Run tests (pytest) |
+| `just <module>::<recipe>` | Run a specific recipe for a single project |
+| `just server::test` | Example: run tests for the server |
+| `just mycli::lint` | Example: lint the CLI app |
+| `just greeter::check` | Example: type-check the greeter library |
+| `just ci` | CI: run all checks (format, lint, type-check, test, e2e) |
+| `just run-e2e` | Run unit tests then e2e tests |
 
-## Useful Nx Commands
+## Useful Commands
 
 | Command | Description |
 | --- | --- |
-| `npx nx graph` | Visualize the project dependency graph in your browser |
-| `npx nx show projects` | List all projects in the workspace |
-| `npx nx show project <name>` | Show details and available targets for a project |
-| `npx nx affected -t test` | Run tests only for projects affected by current changes |
-| `npx nx reset` | Clear the Nx cache |
-| `npx nx report` | Display installed Nx plugin versions and workspace info |
+| `just --list` | List all available recipes |
+| `just --list <module>::` | List recipes for a specific module |
+| `just setup` | Install all Python dependencies (`uv sync --all-packages`) |
