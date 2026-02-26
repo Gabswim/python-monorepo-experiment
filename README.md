@@ -1,40 +1,40 @@
 # python-monorepo-experiment
 
-A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Just](https://just.systems/) for task orchestration.
+A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/projects/workspaces/) and [Make](https://www.gnu.org/software/make/) for task orchestration.
 
 > **Credit:** This project was bootstrapped from [carderne/postmodern-mono](https://github.com/carderne/postmodern-mono).
 
 ## Prerequisites
 
 - [uv](https://docs.astral.sh/uv/) — Python package manager
-- [just](https://just.systems/) — command runner
+- `make` — pre-installed on macOS and Linux
 
 ## Structure
 
 ```
 .
 ├── pyproject.toml              # root pyproject (workspace config)
-├── justfile                    # root task runner (aggregates modules)
+├── Makefile                    # root task runner (delegates to sub-Makefiles)
 ├── uv.lock
 ├── libs/
 │   └── greeter/                # shared library (postmodern.greeter)
-│       ├── justfile
+│       ├── Makefile
 │       └── pyproject.toml
 ├── apps/
 │   ├── server/                 # web server app (postmodern.server)
-│   │   ├── justfile
+│   │   ├── Makefile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   ├── server2/                # web server app (postmodern.server2)
-│   │   ├── justfile
+│   │   ├── Makefile
 │   │   ├── pyproject.toml
 │   │   └── Dockerfile
 │   └── mycli/                  # CLI app (postmodern.mycli)
-│       ├── justfile
+│       ├── Makefile
 │       └── pyproject.toml
 └── e2e/
     └── server2-e2e/            # end-to-end tests for server2
-        ├── justfile
+        ├── Makefile
         └── pyproject.toml
 ```
 
@@ -55,27 +55,28 @@ uv sync --all-packages
 
 ## Commands
 
-All tasks are managed through Just. Run them across all projects or target a specific one.
+All tasks are managed through Make. Run them across all projects or target a specific one.
+Add `-j` for parallel execution (e.g. `make -j test`).
 
 | Command | Description |
 | --- | --- |
-| `just dev` | Start all apps in dev mode with hot-reload |
-| `just server::dev` | Start the server in dev mode with hot-reload |
-| `just fmt` | Format code (ruff format) |
-| `just lint` | Lint & auto-fix (ruff check --fix) |
-| `just check` | Type-check (ty check) |
-| `just test` | Run tests (pytest) |
-| `just <module>::<recipe>` | Run a specific recipe for a single project |
-| `just server::test` | Example: run tests for the server |
-| `just mycli::lint` | Example: lint the CLI app |
-| `just greeter::check` | Example: type-check the greeter library |
-| `just ci` | CI: run all checks (format, lint, type-check, test, e2e) |
-| `just run-e2e` | Run unit tests then e2e tests |
+| `make dev` | Start all apps in dev mode with hot-reload |
+| `make server-dev` | Start the server in dev mode with hot-reload |
+| `make fmt` | Format code (ruff format) |
+| `make lint` | Lint & auto-fix (ruff check --fix) |
+| `make check` | Type-check (ty check) |
+| `make test` | Run tests (pytest) |
+| `make <project>-<target>` | Run a specific target for a single project |
+| `make server-test` | Example: run tests for the server |
+| `make mycli-lint` | Example: lint the CLI app |
+| `make greeter-check` | Example: type-check the greeter library |
+| `make ci` | CI: run all checks (format, lint, type-check, test, e2e) |
+| `make run-e2e` | Run unit tests then e2e tests |
+| `make -C apps/server test` | Alternative: run a target directly in a project directory |
 
 ## Useful Commands
 
 | Command | Description |
 | --- | --- |
-| `just --list` | List all available recipes |
-| `just --list <module>` | List recipes for a specific module (e.g. `just --list server`) |
-| `just setup` | Install all Python dependencies (`uv sync --all-packages`) |
+| `make help` | List all available targets with descriptions |
+| `make setup` | Install all Python dependencies (`uv sync --all-packages`) |
