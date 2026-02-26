@@ -77,5 +77,5 @@ All tasks are managed through Just. Run them across all projects or target a spe
 | Command | Description |
 | --- | --- |
 | `just --list` | List all available recipes |
-| `just --list <module>::` | List recipes for a specific module |
+| `just --list <module>` | List recipes for a specific module (e.g. `just --list server`) |
 | `just setup` | Install all Python dependencies (`uv sync --all-packages`) |
