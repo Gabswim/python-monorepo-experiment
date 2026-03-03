@@ -1,6 +1,11 @@
 version = 1
 revision = 3
 requires-python = "==3.14.*"
+conflicts = [[
+    { package = "postmodern-server" },
+    { package = "postmodern-server2" },
+    { package = "postmodern-server2-e2e" },
+]]
 
 [manifest]
 members = [
@@ -56,7 +61,7 @@ name = "click"
 version = "8.3.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "colorama", marker = "(sys_platform == 'win32' and extra == 'project-17-postmodern-server') or (sys_platform == 'win32' and extra == 'project-18-postmodern-server2') or (sys_platform == 'win32' and extra == 'project-22-postmodern-server2-e2e') or (extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra == 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e') or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/3d/fa/656b739db8587d7b5dfa22e22ed02566950fbfbcdc20311993483657a5c0/click-8.3.1.tar.gz", hash = "sha256:12ff4785d337a1bb490bb7e9c2b1ee5da3112e94a8622f26a6c77f5d2fc6842a", size = 295065, upload-time = "2025-11-15T20:45:42.706Z" }
 wheels = [
@@ -83,14 +88,30 @@ wheels = [
 
 [[package]]
 name = "fastapi"
+version = "0.132.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "annotated-doc", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "pydantic", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "starlette", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "typing-extensions", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "typing-inspection", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a0/55/f1b4d4e478a0a1b4b1113d0f610a1b08e539b69900f97fdc97155d62fdee/fastapi-0.132.0.tar.gz", hash = "sha256:ef687847936d8a57ea6ea04cf9a85fe5f2c6ba64e22bfa721467094b69d48d92", size = 372422, upload-time = "2026-02-23T17:56:22.218Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a8/de/6171c3363bbc5e01686e200e0880647c9270daa476d91030435cf14d32f5/fastapi-0.132.0-py3-none-any.whl", hash = "sha256:3c487d5afce196fa8ea509ae1531e96ccd5cdd2fd6eae78b73e2c20fba706689", size = 104652, upload-time = "2026-02-23T17:56:20.836Z" },
+]
+
+[[package]]
+name = "fastapi"
 version = "0.133.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "annotated-doc" },
-    { name = "pydantic" },
-    { name = "starlette" },
-    { name = "typing-extensions" },
-    { name = "typing-inspection" },
+    { name = "annotated-doc", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "pydantic", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "starlette", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "typing-extensions", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "typing-inspection", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c2/04/ab382c7c03dd545f2c964d06e87ad0d5faa944a2434186ad9c285f5d87e0/fastapi-0.133.0.tar.gz", hash = "sha256:b900a2bf5685cdb0647a41d5900bdeafc3a9e8a28ac08c6246b76699e164d60d", size = 373265, upload-time = "2026-02-24T09:53:40.143Z" }
 wheels = [
@@ -230,9 +251,9 @@ name = "postmodern-server"
 version = "0.1.0"
 source = { editable = "apps/server" }
 dependencies = [
-    { name = "fastapi" },
-    { name = "postmodern-greeter" },
-    { name = "uvicorn" },
+    { name = "fastapi", version = "0.132.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "postmodern-greeter", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "uvicorn", marker = "extra == 'project-17-postmodern-server' or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
 ]
 
 [package.dev-dependencies]
@@ -245,7 +266,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "fastapi", specifier = "==0.133.0" },
+    { name = "fastapi", specifier = "==0.132.0" },
     { name = "postmodern-greeter", editable = "libs/greeter" },
     { name = "uvicorn", specifier = "==0.41.0" },
 ]
@@ -263,9 +284,9 @@ name = "postmodern-server2"
 version = "0.1.0"
 source = { editable = "apps/server2" }
 dependencies = [
-    { name = "fastapi" },
-    { name = "postmodern-greeter" },
-    { name = "uvicorn" },
+    { name = "fastapi", version = "0.133.0", source = { registry = "https://pypi.org/simple" }, marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "postmodern-greeter", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "uvicorn", marker = "extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 
 [package.dev-dependencies]
@@ -296,10 +317,10 @@ name = "postmodern-server2-e2e"
 version = "0.1.0"
 source = { virtual = "e2e/server2-e2e" }
 dependencies = [
-    { name = "httpx" },
-    { name = "postmodern-server2" },
-    { name = "pytest" },
-    { name = "uvicorn" },
+    { name = "httpx", marker = "(extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra != 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e') or (extra != 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "postmodern-server2", marker = "(extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra != 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e') or (extra != 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "pytest", marker = "(extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra != 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e') or (extra != 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e')" },
+    { name = "uvicorn", marker = "(extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra != 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e') or (extra != 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e')" },
 ]
 
 [package.dev-dependencies]
@@ -327,10 +348,10 @@ name = "pydantic"
 version = "2.12.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "annotated-types" },
-    { name = "pydantic-core" },
-    { name = "typing-extensions" },
-    { name = "typing-inspection" },
+    { name = "annotated-types", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "pydantic-core", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "typing-extensions", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "typing-inspection", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/69/44/36f1a6e523abc58ae5f928898e4aca2e0ea509b5aa6f6f392a5d882be928/pydantic-2.12.5.tar.gz", hash = "sha256:4d351024c75c0f085a9febbb665ce8c0c6ec5d30e903bdb6394b7ede26aebb49", size = 821591, upload-time = "2025-11-26T15:11:46.471Z" }
 wheels = [
@@ -342,7 +363,7 @@ name = "pydantic-core"
 version = "2.41.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions" },
+    { name = "typing-extensions", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/71/70/23b021c950c2addd24ec408e9ab05d59b035b39d97cdc1130e1bce647bb6/pydantic_core-2.41.5.tar.gz", hash = "sha256:08daa51ea16ad373ffd5e7606252cc32f07bc72b28284b6bc9c6df804816476e", size = 460952, upload-time = "2025-11-04T13:43:49.098Z" }
 wheels = [
@@ -381,7 +402,7 @@ name = "pytest"
 version = "8.3.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
+    { name = "colorama", marker = "sys_platform == 'win32' or (extra == 'project-17-postmodern-server' and extra == 'project-18-postmodern-server2') or (extra == 'project-17-postmodern-server' and extra == 'project-22-postmodern-server2-e2e') or (extra == 'project-18-postmodern-server2' and extra == 'project-22-postmodern-server2-e2e')" },
     { name = "iniconfig" },
     { name = "packaging" },
     { name = "pluggy" },
@@ -421,7 +442,7 @@ name = "starlette"
 version = "0.52.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "anyio" },
+    { name = "anyio", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/c4/68/79977123bb7be889ad680d79a40f339082c1978b5cfcf62c2d8d196873ac/starlette-0.52.1.tar.gz", hash = "sha256:834edd1b0a23167694292e94f597773bc3f89f362be6effee198165a35d62933", size = 2653702, upload-time = "2026-01-18T13:34:11.062Z" }
 wheels = [
@@ -466,7 +487,7 @@ name = "typing-inspection"
 version = "0.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "typing-extensions" },
+    { name = "typing-extensions", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/55/e3/70399cb7dd41c10ac53367ae42139cf4b1ca5f36bb3dc6c9d33acdb43655/typing_inspection-0.4.2.tar.gz", hash = "sha256:ba561c48a67c5958007083d386c3295464928b01faa735ab8547c5692e87f464", size = 75949, upload-time = "2025-10-01T02:14:41.687Z" }
 wheels = [
@@ -487,8 +508,8 @@ name = "uvicorn"
 version = "0.41.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "click" },
-    { name = "h11" },
+    { name = "click", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
+    { name = "h11", marker = "extra == 'project-17-postmodern-server' or extra == 'project-18-postmodern-server2' or extra == 'project-22-postmodern-server2-e2e'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/32/ce/eeb58ae4ac36fe09e3842eb02e0eb676bf2c53ae062b98f1b2531673efdd/uvicorn-0.41.0.tar.gz", hash = "sha256:09d11cf7008da33113824ee5a1c6422d89fbc2ff476540d69a34c87fab8b571a", size = 82633, upload-time = "2026-02-16T23:07:24.1Z" }
 wheels = [

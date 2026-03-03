@@ -8,6 +8,13 @@ dependencies = []
 
 [tool.uv]
 required-version = "==0.9.18"
+conflicts = [
+    [
+        { package = "postmodern-server" },
+        { package = "postmodern-server2" },
+        { package = "postmodern-server2-e2e" },
+    ],
+]
 
 [tool.uv.workspace]
 members = ["libs/*", "apps/*", "e2e/*"]
