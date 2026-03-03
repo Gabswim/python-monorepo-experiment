@@ -26,7 +26,8 @@
     },
     "test": {
       "cache": true,
-      "inputs": ["python", "^python"]
+      "inputs": ["python", "^python"],
+      "parallelism": false
     },
     "check": {
       "cache": true,

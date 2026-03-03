@@ -12,6 +12,9 @@ conflicts = [
     [
         { package = "postmodern-server" },
         { package = "postmodern-server2" },
+    ],
+    [
+        { package = "postmodern-server" },
         { package = "postmodern-server2-e2e" },
     ],
 ]
