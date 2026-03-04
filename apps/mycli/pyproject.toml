@@ -18,7 +18,7 @@ dev = [
 [tool.uv.sources]
 
 [project.scripts]
-postmodernfoo = "postmodern.mycli.cli:main"
+postmodern-mycli = "postmodern.mycli.cli:main"
 
 [tool.ty.environment]
 python-version = "3.14"

@@ -36,4 +36,4 @@ ENV PATH="/app/.venv/bin:$PATH" \
 
 USER app
 
-CMD ["uvicorn", "postmodern.server2.run:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["postmodern-server2"]
