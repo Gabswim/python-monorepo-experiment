@@ -48,6 +48,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: |
-          export TAG=${{ github.sha }}
-          NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e docker:build docker:push
+      - run: NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e docker:build docker:push
