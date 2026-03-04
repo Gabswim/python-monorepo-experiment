@@ -49,7 +49,7 @@
     "docker:build": {
       "cache": false,
       "inputs": ["python", "^python", "{projectRoot}/Dockerfile"],
-      "dependsOn": ["test", "check", "ci:fmt", "ci:lint"]
+      "dependsOn": ["test", "check", "ci:fmt", "ci:lint", "e2e"]
     },
     "docker:push": {
       "cache": false,
