@@ -48,10 +48,12 @@
     },
     "docker:build": {
       "cache": false,
-      "inputs": ["python", "^python", "{projectRoot}/Dockerfile"]
+      "inputs": ["python", "^python", "{projectRoot}/Dockerfile"],
+      "dependsOn": ["test", "check", "ci:fmt", "ci:lint"]
     },
     "docker:push": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["docker:build"]
     }
   }
 }
