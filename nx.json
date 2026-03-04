@@ -45,6 +45,13 @@
     },
     "lint": {
       "cache": false
+    },
+    "docker:build": {
+      "cache": false,
+      "inputs": ["python", "^python", "{projectRoot}/Dockerfile"]
+    },
+    "docker:push": {
+      "cache": false
     }
   }
 }

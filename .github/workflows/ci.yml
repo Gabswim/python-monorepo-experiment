@@ -6,8 +6,13 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -38,3 +43,19 @@ jobs:
       - run: uv sync --all-packages --locked
 
       - run: NX_TUI=false npx nx run-many -t ci:fmt ci:lint check test e2e
+
+      # Docker: build and push images for affected projects
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: nrwl/nx-set-shas@v4
+
+      - name: Build and push Docker images
+        run: |
+          export TAG=${{ github.sha }}
+          NX_TUI=false npx nx affected -t docker:build docker:push
