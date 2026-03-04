@@ -81,8 +81,10 @@ All tasks are managed through Nx. Run them across all projects or target a speci
 | Command | Description |
 | --- | --- |
 | `npx nx graph` | Visualize the project dependency graph in your browser |
+| `npx nx graph --affected` | Visualize only projects affected by current changes |
 | `npx nx show projects` | List all projects in the workspace |
 | `npx nx show project <name>` | Show details and available targets for a project |
 | `npx nx affected -t test` | Run tests only for projects affected by current changes |
+| `npx nx run-many -t docker:build --dry-run` | Preview the Docker build execution plan without running |
 | `npx nx reset` | Clear the Nx cache |
 | `npx nx report` | Display installed Nx plugin versions and workspace info |
