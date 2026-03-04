@@ -10,6 +10,7 @@ def greet(name: str):
         "message": greet_with_name(name),
     }
 
+
 def main():
     import uvicorn
 
