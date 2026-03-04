@@ -13,17 +13,10 @@ ENV UV_COMPILE_BYTECODE=1 \
     UV_NO_DEV=1
 
 WORKDIR /app
-
-# 1) Install third-party dependencies only (workspace members not available yet).
-#    --frozen skips lockfile validation since member pyproject.tomls aren't copied.
-RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    uv sync --frozen --no-install-workspace --no-editable --package=postmodern-server2
-
-# 2) Copy full source and sync again to install workspace packages.
-#    --locked validates the lockfile is up-to-date now that all members are present.
 COPY . /app
+
+# Copy full source and sync to install workspace packages.
+# --locked validates the lockfile is up-to-date now that all members are present.
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --locked --no-editable --package=postmodern-server2
 
