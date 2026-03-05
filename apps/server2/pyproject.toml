@@ -21,6 +21,9 @@ dev = [
 [tool.uv.sources]
 postmodern-greeter = { workspace = true }
 
+[project.scripts]
+postmodern-server2 = "postmodern.server2.run:main"
+
 [tool.ty.environment]
 python-version = "3.14"
 python = "../../.venv"

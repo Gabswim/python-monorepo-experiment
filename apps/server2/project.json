@@ -52,6 +52,18 @@
         "command": "uv run ruff check .",
         "cwd": "apps/server2"
       }
+    },
+    "docker:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker build -f apps/server2/Dockerfile -t ghcr.io/$(echo ${GITHUB_REPOSITORY_OWNER:-local} | tr '[:upper:]' '[:lower:]')/postmodern-server2:${TAG:-latest} ."
+      }
+    },
+    "docker:push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker push ghcr.io/$(echo ${GITHUB_REPOSITORY_OWNER:-local} | tr '[:upper:]' '[:lower:]')/postmodern-server2:${TAG:-latest}"
+      }
     }
   }
 }
