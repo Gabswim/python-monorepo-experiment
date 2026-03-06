@@ -33,6 +33,10 @@ A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/proje
 │   └── mycli/                  # CLI app (postmodern.mycli)
 │       ├── project.json
 │       └── pyproject.toml
+├── tools/
+│   └── democli/                # dev demo CLI (postmodern.democli)
+│       ├── project.json
+│       └── pyproject.toml
 └── e2e/
     └── server2-e2e/            # end-to-end tests for server2
         ├── project.json
@@ -41,6 +45,7 @@ A Python monorepo using [uv Workspaces](https://docs.astral.sh/uv/concepts/proje
 
 - **libs/** — importable packages, never run independently
 - **apps/** — runnable applications with entry points
+- **tools/** — developer and CI utilities, never deployed to production
 - **e2e/** — end-to-end test suites
 
 ## Getting Started
