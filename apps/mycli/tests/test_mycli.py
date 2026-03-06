@@ -12,4 +12,4 @@ def test_main() -> None:
         with redirect_stdout(stdout):
             cli.main()
 
-    assert stdout.getvalue().strip() == "200"
+    assert stdout.getvalue().strip() == "Status: 200"
