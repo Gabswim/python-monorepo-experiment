@@ -9,6 +9,5 @@ def greet() -> str:
 def greet_with_name(name: str) -> str:
     print("hello")
 
-
     msg = say(f"Hello, {name}!")
     return msg
