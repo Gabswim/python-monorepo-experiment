@@ -3,7 +3,8 @@
   "defaultBase": "main",
   "includedScripts": [],
   "tui": {
-    "enabled": true
+    "enabled": true,
+    "autoExit": true
   },
   "plugins": [
     {
@@ -47,7 +48,7 @@
       "cache": false
     },
     "docker:build": {
-      "cache": false,
+      "cache": true,
       "inputs": ["python", "^python", "{projectRoot}/Dockerfile"],
       "dependsOn": ["test", "check", "ci:fmt", "ci:lint", "e2e"]
     },
