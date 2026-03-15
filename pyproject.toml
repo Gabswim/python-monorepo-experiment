@@ -11,3 +11,4 @@ required-version = "==0.9.18"
 
 [tool.uv.workspace]
 members = ["libs/*", "apps/*", "tools/*", "e2e/*"]
+exclude = ["tools/workspace-plugin"]
