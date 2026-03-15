@@ -1,7 +1,6 @@
 {
-    "python.testing.pytestArgs": [
-        "apps", "e2e", "libs"
-    ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+  "python.testing.pytestArgs": ["apps", "e2e", "libs"],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "eslint.validate": ["json"]
 }
